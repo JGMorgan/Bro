@@ -9716,4 +9716,32 @@ a.button {
   transition-duration: 0s; }
 
 ion-view, .pane, .view {
-  background-color: #F07108; }
+    background-color: #F07108;
+}
+#chatbox {
+    text-align: left;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    padding: 10px;
+    background: #fff;
+    height: 55%;
+    width: 85%;
+    border: 1px solid #ACD8F0;
+    overflow: auto;
+}
+
+#broText{
+     text-align: left;
+     margin: 0 auto;
+     margin-bottom: 25px;
+     padding: 10px;
+     height: 55%;
+     width: 85%;
+}
+
+#brobutton{
+     margin-left: 35%;
+     text-align: center;
+     align-items: center;
+     align-self: center;
+}

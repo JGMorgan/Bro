@@ -1,0 +1,22 @@
+<ion-view title="Login" id="page4" style="background-color:#F07108;" class=" ">
+    <ion-content padding="true">
+        <div class="spacer" style="width: 300px; height: 40px;"></div>
+          <h1 id="login-heading1" style="color:#444444;text-align:center;" class=" ">Bro.</h1>
+          <div class="spacer" style="width: 300px; height: 25px;"></div>
+        <form id="login-form1" class="list ">
+            <ion-list id="login-list2" class=" ">
+                <label class="item item-input " id="login-input1">
+                    <span class="input-label">Username</span>
+                    <input ng-model="formdata.username" type="text" placeholder="">
+                </label>
+                <label class="item item-input " id="login-input2">
+                    <span class="input-label">Password</span>
+                    <input ng-model="formdata.password" type="password" placeholder="">
+                </label>
+            </ion-list>
+            <div class="spacer" style="height: 40px;"></div>
+            <a ng-click=login() id="login-button1" style="border-radius:1000px 1000px 1000px 1000px;" class=" button button-dark  button-block ">Log in</a>
+            <a ui-sref="signup" id="login-button2" class=" button button-positive  button-block button-clear ">Or create an account</a>
+        </form>
+    </ion-content>
+</ion-view>
