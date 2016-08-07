@@ -1,10 +1,9 @@
 //Routes
-var express = require('express');
-var brApp = express();
-var encApp = express();
-
-var brPort = 8080;
-var encPort = 4020;
+var express = require('express'),
+  brApp = express(),
+  encApp = express(),
+  fs = require('fs'),
+  config = require('./config.js');
 
 //WebSocket cut and paste code
 var brWebSocket = require('websocket').server;
@@ -15,9 +14,10 @@ var server = http.createServer(function(req, res) {
    res.writeHead(404);
    res.end();
 });
-server.listen(brPort, function() {
-    console.log((new Date()) + ' - Brooooo x' + brPort);
+server.listen(config.brPort, function() {
+    console.log((new Date()) + ' - Brooooo x' + config.brPort);
 });
+
 
 wsServer = new brWebSocket({
     httpServer: server,
@@ -62,7 +62,7 @@ var mongoose = require('mongoose');
 //          -Any bro after first
 //      -encApp
 //          -firstBro
-//              -Keys included          
+//              -Keys included
 //          -GetFriendsList
 
 /*
@@ -74,7 +74,7 @@ var mongoose = require('mongoose');
 //Placeholder for testing - might be route for websocket
 brApp.get('/', function(req, res) {
     res.send('Bro, welcome'); // This is not needed, used for testing
-}); 
+});
 
 // Websocket, not complete
 
@@ -83,7 +83,7 @@ brApp.get('/', function(req, res) {
  *
  * encApp Section
  *
-*/ 
+*/
 
 //Placeholder for testing - might be route for websocket
 encApp.get('/', function(req, res) {
@@ -124,5 +124,5 @@ encApp.get('/getFriendsList', function() {
 
 //brApp.listen(brPort);
 //console.log('Brooooooo x' + brPort);
-encApp.listen(encPort);
-console.log('secret message on ' + encPort);
+encApp.listen(config.encPort);
+console.log('secret message on ' + config.encPort);
