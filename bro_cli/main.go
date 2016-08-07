@@ -72,8 +72,10 @@ func main() {
 		recv = 1 / float64(len(s))
 		In[0] = recv
 		In[1] = recv
-
-		resp = math.Ceil(1 / float64(net.Predict(In)))
+		prediction := net.Predict(In)
+		fmt.Println(prediction)
+		resp = math.Ceil(10 / prediction)
+		fmt.Println(resp)
 		var buffer bytes.Buffer
 		buffer.WriteString("br")
 		for i := 0; i < int(resp); i++ {

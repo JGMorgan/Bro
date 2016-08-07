@@ -113,25 +113,30 @@ func SigmoidPrime(x float64) float64 {
 
 func (n *NeuralNet) Train(X [][]float64, Y []float64, a float64) {
 	for i := 0; i < len(X); i++ {
-		go func() {
+
+		//			DW2 := n.DJDW2(X[i], Y[i])
+		//			DW1 := n.DJDW1(X[i], Y[i])
+		//	accurate1 := true
+		//	for accurate1 {
+		for h := 0; h < 20; h++ {
+
 			DW2 := n.DJDW2(X[i], Y[i])
 			DW1 := n.DJDW1(X[i], Y[i])
-			accurate1 := true
-			for accurate1 {
-				for index, element := range DW2 {
-					n.W2[index] -= (element * a)
-					accurate1 = !(accurate1 && (element < .05) && (element > -.05))
+			for index, element := range DW2 {
+				n.W2[index] -= (element * a)
+				//	accurate1 = !(accurate1 && (element < .05) && (element > -.05))
+			}
+			//	}
+			//	accurate2 := true
+			//	for accurate2 {
+			for j := 0; j < n.NumInputs; j++ {
+				for k := 0; k < n.NeuronsPerLayer; k++ {
+					n.W1[j][k] -= (DW1[j][k] * a)
+					//		accurate2 = !(accurate2 && (DW1[j][k] < .05) && (DW1[j][k] > -.05))
 				}
 			}
-			accurate2 := true
-			for accurate2 {
-				for j := 0; j < n.NumInputs; j++ {
-					for k := 0; k < n.NeuronsPerLayer; k++ {
-						n.W1[j][k] -= (DW1[j][k] * a)
-						accurate2 = !(accurate2 && (DW1[j][k] < .05) && (DW1[j][k] > -.05))
-					}
-				}
-			}
-		}()
+		}
+		//	}
 	}
+
 }
