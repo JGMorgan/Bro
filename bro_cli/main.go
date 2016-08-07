@@ -3,6 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"golang.org/x/net/websocket"
+	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -14,6 +16,25 @@ type BroList struct {
 
 func main() {
 	fmt.Println("Welcome to Bro CLI\nType help to get a list of valid commands")
+	ws, err := websocket.Dial("ws://localhost:8000/socket", "", "http://localhost/")
+	if err != nil {
+		log.Fatal(err)
+	}
+	for {
+		message := []byte("hello, world!")
+		_, err = ws.Write(message)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("Sent: %s\n", message)
+
+		var msg = make([]byte, 512)
+		_, err = ws.Read(msg)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("Received: %s\n", msg)
+	}
 	menu()
 }
 
@@ -43,6 +64,5 @@ func showCommands() {
 }
 
 func showBroList() {
-	resp, err := http.Get("") //get list
-	return resp
+	http.Get("") //get list
 }
