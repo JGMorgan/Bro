@@ -1,7 +1,6 @@
 package neural_network
 
 import (
-	"fmt"
 	"math"
 	"math/rand"
 	"time"
